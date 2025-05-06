@@ -109,7 +109,7 @@ Mô tả: Lưu trữ và xử lý truy vấn SQL.
 Đa luồng / đa tiến trình: Nhiều truy vấn và giao dịch được xử lý đồng thời.
 
 #### Câu 3 Viết ra giấy rồi chụp ảnh , liệt kê các trường hợp nào thì nên dùng thread , trường hợp nào nên dùng process , khi nào thi nên dùng cả hai . viết dưới dạng table và đưa ví dụ các bài toán 
-[![App Platorm](/static/images/cau3.jpg)]()
+[![App Platorm](/images/cau3.jpg)]()
 
 
 #### Câu 4 Report, tìm hiểu 1. chatGPT training tập dữ liệu lớn bằng distributed system như thế nào. Đưa link nguồn tài liệu tham khảo từ google
