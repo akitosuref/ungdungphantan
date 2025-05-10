@@ -1,65 +1,117 @@
 ---
-title: "Syntax highlighting with mdsvex"
-date: "2023-01-05"
-updated: "2023-01-05"
+title: "Trao đổi thông tin"
+date: "2025-07-05"
+updated: "2023-07-05"
 categories:
   - "sveltekit"
   - "web"
   - "css"
   - "markdown"
-coverImage: "/images/linus-nylund-Q5QspluNZmM-unsplash.jpg"
+coverImage: "https://vietquality.vn/wp-content/uploads/2020/05/1_sU6PThU3iIMFVj-6htQdkA.jpeg"
 coverWidth: 16
 coverHeight: 9
 excerpt: This post shows you how syntax highlighting works here.
 ---
+# 📨 Báo cáo & Demo: Hệ thống truyền thông điệp và RPC
 
-mdsvex has automatic, built-in syntax highlighting with [Prism.js](https://prismjs.com/); just include the language name after the triple backticks, like so:
+## Bài tập 1: Tìm hiểu RabbitMQ – Hệ thống truyền thông điệp
 
+### 1. RabbitMQ là gì?
+RabbitMQ là một hệ thống trung gian truyền thông điệp (Message Broker) mã nguồn mở, sử dụng giao thức AMQP (Advanced Message Queuing Protocol). Nó cho phép các hệ thống giao tiếp thông qua việc gửi và nhận thông điệp qua hàng đợi (queue).
+
+### 2. Kiến trúc hoạt động
+- **Producer**: Gửi thông điệp
+- **Exchange**: Tiếp nhận và phân phối thông điệp đến các hàng đợi
+- **Queue**: Lưu trữ thông điệp
+- **Consumer**: Nhận và xử lý thông điệp
+
+### 3. Các loại Exchange
+- **Direct**: định tuyến theo tên chính xác
+- **Topic**: định tuyến theo mẫu chuỗi (ví dụ: `log.*`)
+- **Fanout**: phát broadcast tới tất cả queue
+- **Headers**: định tuyến theo metadata
+
+### 4. Cài đặt RabbitMQ
+- **Dùng Docker**:
+  ```bash
+  docker run -d --hostname my-rabbit --name some-rabbit \
+  -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+### Bài tập 2: Code hệ thống đơn giản sử dụng RabbitMQ
+1. Mục tiêu
+Tạo một hệ thống đơn giản có thể gửi và nhận thông điệp bằng RabbitMQ.
+
+2. Cài đặt thư viện Python
 ```
-\```css
-/* Your CSS here */
-\```
+bash
+
+pip install pika
+```
+3. Producer – Gửi thông điệp
+```
+import pika
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.queue_declare(queue='hello')
+
+channel.basic_publish(exchange='', routing_key='hello', body='Hello RabbitMQ!')
+print(" [x] Sent 'Hello RabbitMQ!'")
+connection.close()
 ```
 
-And that will render just like so:
+ 4. Consumer – Nhận thông điệp
+```
+import pika
 
-```css
-.my-css-class {
-	color: #ffd100;
-	box-sizing: border-box;
-	/* etc... */
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.queue_declare(queue='hello')
+
+def callback(ch, method, properties, body):
+    print(f" [x] Received {body}")
+
+channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
+channel.start_consuming()
+```
+### Bài tập 3: Tìm hiểu RPC dùng định dạng JSON
+1. RPC là gì?
+RPC (Remote Procedure Call) là kỹ thuật gọi hàm từ xa, cho phép chương trình này gọi hàm do chương trình khác cung cấp như thể gọi hàm cục bộ.
+
+2. JSON-RPC thay thế xmlrpc
+Thay vì XML như xmlrpc.client, JSON-RPC sử dụng JSON để mã hóa dữ liệu, nhẹ hơn và dễ đọc.
+
+3. Cài đặt Flask + JSON-RPC
+```
+bash
+pip install flask flask-jsonrpc
+```
+4. Server: RPC sử dụng JSON
+```
+from flask import Flask
+from flask_jsonrpc import JSONRPC
+
+app = Flask(__name__)
+jsonrpc = JSONRPC(app, '/api')
+
+@jsonrpc.method('App.add')
+def add(a: int, b: int) -> int:
+    return a + b
+
+if __name__ == '__main__':
+    app.run()
+```	
+5. Client: Gửi yêu cầu gọi hàm từ xa
+```
+import requests
+
+data = {
+    "jsonrpc": "2.0",
+    "method": "App.add",
+    "params": [5, 3],
+    "id": 1
 }
+response = requests.post("http://localhost:5000/api", json=data)
+print(response.json())
 ```
-
-Here's how you'd do JavaScript:
-
-```
-\```js
-// You can use js or javascript for the language
-\```
-```
-
-Highlighted code sample:
-```js
-const invertNumberInRange = (num, range) => {
-	return range - num;
-}
-
-invertNumberInRange(25, 100); // 75
-```
-
-Of course, mdsvex supports Svelte highlighting, too:
-
-```svelte
-<script>
-	import myComponent from '$lib/components/myComponent.svelte';
-
-	export let myProp = undefined;
-</script>
-
-<div>
-	<MyComponent prop={myProp}>
-</div>
-```
-
-All these colors are in `src/lib/assets/css/prism.css`, if you'd like to change them.
