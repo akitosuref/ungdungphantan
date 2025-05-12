@@ -109,10 +109,6 @@ Người dùng muốn được gợi ý sản phẩm tương tự dựa trên:
 ```
 #### 🚀 3. Ứng dụng của dự án
 🛒 Gợi ý sản phẩm liên quan khi người dùng xem sản phẩm
-
-🔁 Tăng tương tác và doanh thu
-
-🤖 Là nền tảng cho hệ thống gợi ý thông minh hơn sau này
 #### 🧰 4. Thư viện sử dụng
 ```
 | Thư viện        | Mục đích sử dụng                                    |
