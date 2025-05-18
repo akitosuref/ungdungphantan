@@ -13,9 +13,9 @@ coverHeight: 9
 excerpt: Định danh trong hệ thống phân tán là phương pháp gán tên hoặc ID cho các nút, tài nguyên hoặc dịch vụ, giúp chúng có thể được xác định và truy cập một cách hiệu quả trong môi trường mạng phân tán.
 ---
 # Bài Tập 1: Tìm Hiểu Quy Trình Duyệt Một Trang Web
-![My Image](/images/dinhdanh.jpg)
+![cau1](/images/dinhdanh.jpg)
 
-![My Image](/images/dinhdanh2.jpg)
+![cau1](/images/dinhdanh2.jpg)
 
 
 
