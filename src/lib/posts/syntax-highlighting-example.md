@@ -10,7 +10,7 @@ categories:
 coverImage: "https://vietquality.vn/wp-content/uploads/2020/05/1_sU6PThU3iIMFVj-6htQdkA.jpeg"
 coverWidth: 16
 coverHeight: 9
-excerpt: This post shows you how syntax highlighting works here.
+excerpt: Trao đổi thông tin d
 ---
 # 📨 Báo cáo & Demo: Hệ thống truyền thông điệp và RPC
 
