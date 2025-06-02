@@ -1,6 +1,5 @@
 ---
 title: "Kiến trúc hệ thống"
-date: 2025-06-02
 description: "Giới thiệu tổng quan về kiến trúc hệ thống và ý nghĩa của từng thành phần trong sơ đồ."
 ---
 
