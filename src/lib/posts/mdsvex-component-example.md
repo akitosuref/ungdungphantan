@@ -9,7 +9,7 @@ categories:
 coverImage: "/images/tien-trinh-va-luong.jpg"
 coverWidth: 16
 coverHeight: 9
-excerpt: This post demonstrates how to include a Svelte component in a Markdown post.
+excerpt: tiến trình và luồng 
 ---
 
 <script>
